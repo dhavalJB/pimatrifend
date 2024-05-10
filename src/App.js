@@ -13,7 +13,7 @@ import FrontPage from './components/FrontPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/css/FrontPage.css';
 import myLogo from './img/logo.jpg';
-
+import axios from 'axios';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Home');
@@ -27,9 +27,20 @@ function App() {
         const accessToken = authResult.accessToken;
         const user = authResult.user;
         console.log('Authentication successful:', user);
-        // Proceed with your application logic
-        setUser(user);
-        setCurrentPage('Home');
+  
+        // Send authResult to the backend
+        axios.post(`${process.env.FRONTEND_URL}/api/authenticate`, { authResult })
+          .then(response => {
+            console.log('Authentication sent to backend:', response.data);
+            // Proceed with your application logic
+            setUser(user);
+            setCurrentPage('Home');
+            axios.defaults.headers.common['Authorization'] = accessToken;
+          })
+          .catch(error => {
+            console.error('Error sending authentication to backend:', error);
+            setError('Authentication failed');
+          });
       })
       .catch(error => {
         // Handle authentication error
@@ -37,6 +48,7 @@ function App() {
         setError('Authentication failed');
       });
   };
+  
 
   const onIncompletePaymentFound = payment => {
     // Handle incomplete payment found
@@ -50,24 +62,25 @@ function App() {
 
   const handleLogout = () => {
     setUser(null);
+    setCurrentPage('Home');
   };
  
   return (
     <div className="App">
       <header>
-        <div class="container">
-          <div class="header-left">
-            <div class="logo">
-              <img src={myLogo} />
+        <div className="container">
+          <div className="header-left">
+            <div className="logo">
+              <img src={myLogo} alt="Logo" />
             </div>
           </div>
-          <div class="header-right">
-            {!user && <button class="authenticate-btn" onClick={handleAuthenticate}>Authenticate</button>}
+          <div className="header-right">
+            {!user && <button className="authenticate-btn" onClick={handleAuthenticate}>Authenticate</button>}
             {user && <span>{user.username}</span>}
-            <nav class="navbar">
-              <div class="dropdown">
-                <button class="dropbtn">Menu</button>
-                <div class="dropdown-content">
+            <nav className="navbar">
+              <div className="dropdown">
+                <button className="dropbtn">Menu</button>
+                <div className="dropdown-content">
                   <button onClick={() => handleNavigate('Home')}>Home</button>
                   <button onClick={() => handleNavigate('Listing')}>Listing</button>
                   <button onClick={() => handleNavigate('Search')}>Search</button>
