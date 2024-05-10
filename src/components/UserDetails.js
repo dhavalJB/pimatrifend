@@ -10,11 +10,11 @@ function UserDetails({ user }) {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/${user.username}`);
+        const response = await axios.get(`https://pimatribend.onrender.com/api/users/${user.username}`);
         console.log('User details:', response.data);
         setUserDetails(response.data);
         if (response.data.image) {
-          const photoResponse = await axios.get(`http://localhost:5000${response.data.image}`, { responseType: 'blob' });
+          const photoResponse = await axios.get(`https://pimatribend.onrender.com${response.data.image}`, { responseType: 'blob' });
           setPhoto(URL.createObjectURL(photoResponse.data));
         }
       } catch (error) {
@@ -37,7 +37,7 @@ function UserDetails({ user }) {
       <h2>User Details</h2>
       {user.image && (
         <div className="user-image-container">
-          <img src={`http://localhost:5000/api/users/image/${user.image}`} alt={user.name} />
+          <img src={`https://pimatribend.onrender.com/api/users/image/${user.image}`} alt={user.name} />
         </div>
       )}
       {user.name && <p>Name: {user.name}</p>}

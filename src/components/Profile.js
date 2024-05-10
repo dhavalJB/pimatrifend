@@ -9,7 +9,7 @@ function FullProfile({ userDetails: user }) {
   useEffect(() => {
     const fetchProfileDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/${user.username}`);
+        const response = await axios.get(`https://pimatribend.onrender.com/api/users/${user.username}`);
         console.log('User details:', response.data);
         setProfileDetails(response.data);
       } catch (error) {
@@ -34,7 +34,7 @@ function FullProfile({ userDetails: user }) {
           <div className="row">
             <div className="col-md-4">
               <div className="profile-img">
-                <img src={`http://localhost:5000/api/users/image/${profileDetails.image}`} alt=""/>
+                <img src={`https://pimatribend.onrender.com/api/users/image/${profileDetails.image}`} alt=""/>
                 <div className="file btn btn-lg btn-primary">
                   Change Photo
                   <input type="file" name="file"/>

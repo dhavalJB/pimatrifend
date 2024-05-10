@@ -64,7 +64,7 @@ function UserForm({ user }) {
         userData.append('image', image);
       }
 
-      await axios.post('http://localhost:5000/api/users', userData);
+      await axios.post('https://pimatribend.onrender.com/api/users', userData);
       alert('User added successfully!');
       // Clear form after successful submission
       setFormData({

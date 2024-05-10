@@ -13,7 +13,7 @@ function ProfileModule({ user, onClick, onConnect }) {
     <div className="card">
       <div className="profile-photo">
         {user.image && (
-          <img src={`http://localhost:5000/api/users/image/${user.image}`} alt={user.name} />
+          <img src={`https://pimatribend.onrender.com/api/users/image/${user.image}`} alt={user.name} />
         )}
       </div>
       <h3 className="profile-name">{user.name}</h3>

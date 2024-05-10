@@ -14,7 +14,7 @@ const Detail = ({ user }) => {
 
   const fetchUserDetails = async (username) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/${username}`);
+      const response = await axios.get(`https://pimatribend.onrender.com/api/users/${username}`);
       console.log('User details:', response.data);
       setUserDetails(response.data); // Set user details here
       setDetailsFetched(true);
