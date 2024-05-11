@@ -17,7 +17,7 @@ const FrontPage = () => {
 
       <div className='punch-line'>
         <p>
-"Welcome to Pi Matrimonial, the first of its kind on the Pi Network. Find your perfect match with us!"</p>
+"Welcome to Ring Match, the first of its kind on the Pi Network. Find your perfect match with us!"</p>
       </div>
       <div className='bgImg'>
         <img src={bgIMG} alt="bg-img" />

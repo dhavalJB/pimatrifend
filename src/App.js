@@ -31,15 +31,17 @@ function App() {
         setUser(user);
         setCurrentPage('Home');
         axios.defaults.headers.common['Authorization'] = accessToken;
-  
+
         // Send authentication to backend
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/authenticate`, { authorization: accessToken })
-          .then(response => {
-            console.log('Authentication sent to backend:', response.data);
-          })
-          .catch(error => {
-            console.error('Error sending authentication to backend:', error);
-          });
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/authenticate`, {}, {
+          headers: { Authorization: accessToken }
+        })
+        .then(response => {
+          console.log('Authentication sent to backend:', response.data);
+        })
+        .catch(error => {
+          console.error('Error sending authentication to backend:', error);
+        });
       })
       .catch(error => {
         // Handle authentication error
@@ -47,8 +49,6 @@ function App() {
         setError('Authentication failed');
       });
   };
-  
-  
 
   const onIncompletePaymentFound = payment => {
     // Handle incomplete payment found
@@ -64,7 +64,7 @@ function App() {
     setUser(null);
     setCurrentPage('Home');
   };
- 
+
   return (
     <div className="App">
       <header>

@@ -48,7 +48,7 @@ function Footer() {
 		   
   	 </div>
 	 
-	   <p class="copyright">&copy; 2024 Pi Matrimonial. <br />All rights reserved.</p>
+	   <p class="copyright">&copy; 2024 Ring Match. <br />All rights reserved.</p>
   </footer>
 
 

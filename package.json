@@ -9,6 +9,7 @@
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "pi": "^2.0.4",
