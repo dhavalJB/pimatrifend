@@ -121,9 +121,8 @@ header {
 
 
 .logo {
-  width: 40px; /* Set the width of the logo container */
+  width: 70px; /* Set the width of the logo container */
   height: 40px; /* Set the height of the logo container */
-  border-radius: 50%; /* Make the container round */
   overflow: hidden; /* Hide any content that overflows the container */
 }
 

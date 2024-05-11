@@ -4,7 +4,7 @@ import React from 'react';
 import './css/FrontPage.css';
 import myImage from '../img/91394.jpg';
 import bgIMG from '../img/another-image.jpg';
-import myLego from '../img/lego.jpg';
+import myLego from '../img/lego.png';
 
 const FrontPage = () => {
   return (

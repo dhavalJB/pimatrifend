@@ -12,7 +12,7 @@ import './App.css';
 import FrontPage from './components/FrontPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/css/FrontPage.css';
-import myLogo from './img/logo.jpg';
+import myLogo from './img/logo.png';
 import axios from 'axios';
 
 function App() {
