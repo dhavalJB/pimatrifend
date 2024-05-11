@@ -27,19 +27,18 @@ function App() {
         const accessToken = authResult.accessToken;
         const user = authResult.user;
         console.log('Authentication successful:', user);
+        // Proceed with your application logic
+        setUser(user);
+        setCurrentPage('Home');
+        axios.defaults.headers.common['Authorization'] = accessToken;
   
-        // Send authResult to the backend
-        axios.post(`${process.env.FRONTEND_URL}/api/authenticate`, { authResult })
+        // Send authentication to backend
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/authenticate`, { authorization: accessToken })
           .then(response => {
             console.log('Authentication sent to backend:', response.data);
-            // Proceed with your application logic
-            setUser(user);
-            setCurrentPage('Home');
-            axios.defaults.headers.common['Authorization'] = accessToken;
           })
           .catch(error => {
             console.error('Error sending authentication to backend:', error);
-            setError('Authentication failed');
           });
       })
       .catch(error => {
@@ -48,6 +47,7 @@ function App() {
         setError('Authentication failed');
       });
   };
+  
   
 
   const onIncompletePaymentFound = payment => {
