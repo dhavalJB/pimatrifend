@@ -7,8 +7,18 @@
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>React App</title>
+<!--   <script>
+    window.__ENV = {
+      backendURL: "%REACT_APP_BACKEND_URL%",
+      sandbox: "%REACT_APP_SANDBOX_SDK%",
+    }
+  </script>
   <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-  <script src="https://api.minepi.com"></script>
+    <script>
+    var runSDKInSandboxMode = window.__ENV.sandbox === "true"; // treat env vars as strings, not booleans
+    Pi.init({ version: "2.0", sandbox: runSDKInSandboxMode });
+  </script> -->
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
   <script>
     Pi.init({ version: "2.0", sandbox: true });
   </script>

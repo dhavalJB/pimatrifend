@@ -53,9 +53,7 @@ function Footer() {
 
 
 
-
-
-    </div>
+  </div>
   );
 }
 

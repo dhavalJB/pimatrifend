@@ -5,7 +5,7 @@
 
 
 .feedback-input {
-  color:white;
+  color:rgb(0, 0, 0);
   font-family: Helvetica, Arial, sans-serif;
   font-weight:500;
   font-size: 18px;
@@ -36,7 +36,7 @@ textarea {
   border-radius:5px;
   border:0;
   cursor:pointer;
-  color:white;
+  color:rgb(0, 0, 0);
   font-size:24px;
   padding-top:10px;
   padding-bottom:10px;
@@ -45,3 +45,4 @@ textarea {
   font-weight:700;
 }
 [type="submit"]:hover { background:#CC4949; }
+

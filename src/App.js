@@ -15,6 +15,8 @@ import './components/css/FrontPage.css';
 import myLogo from './img/logo.png';
 import axios from 'axios';
 
+const REACT_APP_BACKEND_URL = 'https://pimatribend.onrender.com';
+
 function App() {
   const [currentPage, setCurrentPage] = useState('Home');
   const [user, setUser] = useState(null);
@@ -30,10 +32,11 @@ function App() {
         // Proceed with your application logic
         setUser(user);
         setCurrentPage('Home');
+        localStorage.setItem('accessToken', accessToken); // Save access token
         axios.defaults.headers.common['Authorization'] = accessToken;
 
         // Send authentication to backend
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/authenticate`, {}, {
+        axios.post(`${REACT_APP_BACKEND_URL}/api/authenticate`, {}, {
           headers: { Authorization: accessToken }
         })
         .then(response => {
@@ -63,6 +66,63 @@ function App() {
   const handleLogout = () => {
     setUser(null);
     setCurrentPage('Home');
+  };
+
+  const handlePaymentRequest = () => {
+    requestPayment();
+  };
+
+  const requestPayment = async () => {
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/api/handleIncompletePayment`, {}, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+      });
+      if (response.status === 200) {
+        console.log('Payment request sent successfully');
+      }
+    } catch (error) {
+      console.error('Request Payment Error:', error);
+    }
+  };
+
+  const approvePayment = async (paymentId) => {
+    try {
+      console.log('Approving payment:', paymentId);
+      const response = await axios.post(
+        `${REACT_APP_BACKEND_URL}/api/approvePayment`,
+        { paymentId },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        }
+      );
+      if (response.status === 200) {
+        console.log('Payment approved successfully.');
+      }
+    } catch (error) {
+      console.error('Error approving payment:', error);
+    }
+  };
+
+  const completePayment = async (paymentId, txid) => {
+    try {
+      console.log('Completing payment:', paymentId, 'with TXID:', txid);
+      const response = await axios.post(
+        `${REACT_APP_BACKEND_URL}/api/completePayment`,
+        { paymentId, txid },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        }
+      );
+      if (response.status === 200) {
+        console.log('Payment completed successfully.');
+      }
+    } catch (error) {
+      console.error('Error completing payment:', error);
+    }
   };
 
   return (

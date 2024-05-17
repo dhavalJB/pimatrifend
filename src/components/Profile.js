@@ -35,10 +35,6 @@ function FullProfile({ userDetails: user }) {
             <div className="col-md-4">
               <div className="profile-img">
                 <img src={`https://pimatribend.onrender.com/api/users/image/${profileDetails.image}`} alt=""/>
-                <div className="file btn btn-lg btn-primary">
-                  Change Photo
-                  <input type="file" name="file"/>
-                </div>
               </div>
             </div>
             <div className="col-md-6">
